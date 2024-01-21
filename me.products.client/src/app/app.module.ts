@@ -9,6 +9,7 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { ReactiveFormsModule, FormsModule }   from '@angular/forms';
 import { ProductListComponent } from './product-list/product-list.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     CreateProductComponent,
     ModalComponent,
     ProductListComponent,
-    EditProductComponent
+    EditProductComponent,
+    PlaceholderComponent
   ],
   imports: [
     BrowserModule,

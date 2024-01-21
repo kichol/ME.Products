@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
+import {  Router } from '@angular/router';
+import { CatalogService } from '../catalog.service';
 
 @Component({
   selector: 'app-create-product',
@@ -14,23 +16,20 @@ export class CreateProductComponent {
     price: new FormControl("",[Validators.required, Validators.pattern(/^(?:\d*\.\d{1,2}|\d+)$/)]),
   }); 
 
-  @Output() productCreated = new EventEmitter();
-  @Output() closeClicked = new EventEmitter();
-
   
-  constructor(){}
+  constructor(private router: Router, private catalogService: CatalogService) { }
   
   onSubmit(){
     if (!this.createForm.valid) {
       return;
     }
-
-    this.productCreated.emit(this.createForm.value);
+    this.catalogService.createProduct(this.createForm.value);
+    this.router.navigateByUrl('/');
    
   }
 
   closeForm(){
-    this.closeClicked.emit();
+    this.router.navigateByUrl('/');
   }
 
 

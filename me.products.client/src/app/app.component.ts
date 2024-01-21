@@ -8,7 +8,7 @@ import { Product } from '../interfaces/product';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  products: Product[];
+ 
   editedProduct: Product;
   editing = false;
   creating = false;
@@ -16,54 +16,55 @@ export class AppComponent {
   constructor(private catalogService: CatalogService) { }
 
   ngOnInit() {
-    this.catalogService.getProducts().subscribe(
-      {
-        next: response => { this.products = response },
-        error: error => { console.log('There was and error loading product! ', error) },
 
-      });
+      //.subscribe(
+      //{
+      //  next: response => { this.products = response },
+      //  error: error => { console.log('There was and error loading product! ', error) },
+
+      //});
   };
 
-  onSubmitCreate(value: Product) {
-    this.catalogService.createProduct(value).subscribe(response => {
-      if (response.product) {
-        this.products = [...this.products, response.product];
-        this.creating = false;
-      }
+  //onSubmitCreate(value: Product) {
+  //  this.catalogService.createProduct(value).subscribe(response => {
+  //    if (response.product) {
+  //      this.products = [...this.products, response.product];
+  //      this.creating = false;
+  //    }
 
-    },);
+  //  },);
 
-  }
+  //}
 
-  onSubmitEdit(value: Product) {
-    this.catalogService.editProduct(value).subscribe(response => {
-      this.catalogService.getProducts().subscribe(response => {
-        this.products = response;
-        this.editing = false;
-      });
-    });
+  //onSubmitEdit(value: Product) {
+  //  this.catalogService.editProduct(value).subscribe(response => {
+  //    this.catalogService.getProducts().subscribe(response => {
+  //      this.products = response;
+  //      this.editing = false;
+  //    });
+  //  });
 
-  }
+  //}
 
-  onDeleteProduct(id: string) {
-    this.catalogService.deleteProduct(id).subscribe(response => {
-      this.catalogService.getProducts().subscribe(response => {
-        this.products = response;
+  //onDeleteProduct(id: string) {
+  //  this.catalogService.deleteProduct(id).subscribe(response => {
+  //    this.catalogService.getProducts().subscribe(response => {
+  //      this.products = response;
 
-      });
-    });
-  }
-  onEditProduct(product: Product) {
-    this.editedProduct = product;
-    this.editing = !this.editing;
+  //    });
+  //  });
+  //}
+  //onEditProduct(product: Product) {
+  //  this.editedProduct = product;
+  //  this.editing = !this.editing;
 
-  }
-  onCancelEdit() {
-    this.editing = false;
-  }
-  onCancelCreate() {
-    this.creating = false;
-  }
+  //}
+  //onCancelEdit() {
+  //  this.editing = false;
+  //}
+  //onCancelCreate() {
+  //  this.creating = false;
+  //}
 
 }
 
